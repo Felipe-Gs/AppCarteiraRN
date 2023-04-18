@@ -12,7 +12,6 @@ const Cadastro = () => {
    const myArray = [3, 1, 4, 1, 5, 9, 12];
 
    // const max = myArray.maiorValor();
-   //funções que estou aprendendo
    Number.prototype.toFormattedPhoneString = toFormattedPhoneString;
    const myNumber = 88993108812;
    const formattedNumber = myNumber.toFormattedPhoneString();
