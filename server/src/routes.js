@@ -74,4 +74,22 @@ router.post("/add", (req, res) => {
    }
 });
 
+router.get("/buscarDados/:id", (req, res) => {
+   const id = req.params.id;
+   try {
+      const query = `SELECT * FROM usuarios WHERE id = '${id}'`;
+      client.query(query, (err, result) => {
+         if (err) {
+            return res.status(404).send({
+               message: "erro no servidor",
+            });
+         } else {
+            return res.status(200).send(result.rows);
+         }
+      });
+   } catch (error) {
+      console.log(error);
+   }
+});
+
 module.exports = router;
