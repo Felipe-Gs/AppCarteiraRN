@@ -1,0 +1,7 @@
+{
+   "extends": "expo/tsconfig.base",
+   "compilerOptions": {
+      "strict": true
+   }
+}
+//https://www.npmjs.com/package/babel-plugin-module-resolver
