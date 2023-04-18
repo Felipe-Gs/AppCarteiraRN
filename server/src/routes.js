@@ -81,7 +81,7 @@ router.get("/buscarDadoss/:id", (req, res) => {
       client.query(query, (err, result) => {
          if (err) {
             return res.status(404).send({
-               message: "erro no servidor",
+               message: "erro nao conhecido",
             });
          } else {
             return res.status(200).send(result.rows);
