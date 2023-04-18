@@ -74,7 +74,7 @@ router.post("/add", (req, res) => {
    }
 });
 
-router.get("/buscarDados/:id", (req, res) => {
+router.get("/buscarDadoss/:id", (req, res) => {
    const id = req.params.id;
    try {
       const query = `SELECT * FROM usuarios WHERE id = '${id}'`;
