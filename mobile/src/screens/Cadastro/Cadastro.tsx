@@ -6,6 +6,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { toFormattedPhoneString } from "../../utils/toFormattedPhoneString";
 import { maiorValor } from "../../utils/maiorValor";
+import api from "../../services/api";
 
 const Cadastro = () => {
    const { navigate } = useNavigation();
@@ -16,6 +17,7 @@ const Cadastro = () => {
    const myNumber = 88993108812;
    const formattedNumber = myNumber.toFormattedPhoneString();
 
+   const [resp, setResp] = useState("");
    const [showPassword, setShowPassword] = useState(true);
    const [user, setUser] = useState({
       nome: "",
@@ -27,11 +29,19 @@ const Cadastro = () => {
       setShowPassword(!showPassword);
    };
 
-   const handleCadastro = () => {
+   const handleCadastro = async () => {
       if (!user.nome || !user.email || !user.password)
          return alert("Insiras os dados para proseguir");
-      else {
-         alert("Cadastro realizado com sucesso!");
+      try {
+         const response = await api.post("/cadastrar", {
+            nome: user.nome,
+            email: user.email,
+            password: user.password,
+         });
+         setResp(response.data.message);
+         setUser({ nome: "", email: "", password: "" });
+      } catch (error) {
+         console.error(error);
       }
    };
 
@@ -81,8 +91,7 @@ const Cadastro = () => {
                </Text>
             </TouchableOpacity>
          </View>
-         <Text>{formattedNumber}</Text>
-         <Text>{maiorValor(myArray)}</Text>
+         <Text>{resp}</Text>
       </View>
    );
 };
