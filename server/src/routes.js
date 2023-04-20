@@ -77,7 +77,7 @@ router.post("/add", (req, res) => {
 router.get("/buscarDadoss/:id", (req, res) => {
    const id = req.params.id;
    try {
-      const query = `SELECT * FROM usuarios WHERE id = '${id}'`;
+      const query = `SELECT * FROM usuario WHERE id = '${id}'`;
       client.query(query, (err, result) => {
          if (err) {
             return res.status(404).send({
