@@ -1,17 +1,57 @@
-import { createContext, ReactNode } from "react";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import api from "../services/api";
 
 interface IAuthContext {
-   soma: (a: number, b: number) => number;
+   handleLogin: () => void;
+   user: {
+      email: string;
+      password: string;
+   };
+   setUser: (user: { email: string; password: string }) => void;
+   dados: {
+      email: string;
+      id: string;
+      nome: string;
+      password: string;
+   };
 }
 
 export const AuthContext = createContext({} as IAuthContext);
 
 export default function auth({ children }: { children: ReactNode }) {
-   const soma = (a: number, b: number) => a + b;
+   const [user, setUser] = useState({
+      email: "",
+      password: "",
+   });
+
+   const [dados, setDados] = useState({
+      email: "",
+      id: "",
+      nome: "",
+      password: "",
+   });
+
+   const handleLogin = async () => {
+      if (!user.email || !user.password)
+         return alert("Existem campos vazios, complete para prosseguir");
+      try {
+         const response = await api.post("/login", {
+            email: user.email,
+            password: user.password,
+         });
+         setDados(response.data.dados);
+         alert(response.data.message);
+      } catch (error) {
+         console.log(error);
+      }
+   };
    return (
       <AuthContext.Provider
          value={{
-            soma,
+            handleLogin,
+            user,
+            dados,
+            setUser,
          }}
       >
          {children}
