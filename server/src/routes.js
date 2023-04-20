@@ -23,16 +23,27 @@ router.post("/cadastrar", (req, res) => {
       }).required();
       const validData = usuarioBody.parse(req.body);
       const { nome, email, password } = validData;
+      const query2 = `SELECT * FROM usuario WHERE nome = '${nome}' AND email = '${email}' AND password = '${password}'`;
+
       const query = `INSERT INTO usuario (nome, email, password) VALUES ($1, $2, $3)`;
       const values = [nome, email, password];
-      client.query(query, values, (err, result) => {
-         if (err) {
-            return res.status(404).send({
-               message: "erro inespedaro",
+
+      client.query(query2, (err, result) => {
+         if (result.rows.length != 0) {
+            return res.status(202).send({
+               message: "usuario ja cadastrado",
             });
          } else {
-            return res.status(200).send({
-               message: "estudante cadastrado com sucesso",
+            client.query(query, values, (err, result) => {
+               if (err) {
+                  return res.status(404).send({
+                     message: "ja existe usuario com esse email",
+                  });
+               } else {
+                  return res.status(200).send({
+                     message: "estudante cadastrado com sucesso",
+                  });
+               }
             });
          }
       });
@@ -120,6 +131,11 @@ router.post("/login", (req, res) => {
    } catch (error) {
       console.log(error);
    }
+});
+
+router.post("/mudarSenha", (req, res) => {
+   try {
+   } catch (error) {}
 });
 
 module.exports = router;
