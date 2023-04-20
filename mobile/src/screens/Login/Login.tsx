@@ -5,23 +5,31 @@ import {
    KeyboardAvoidingView,
 } from "react-native";
 import { styles } from "./styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-native-paper";
 import ButtonRedeSocial from "../../components/ButtonRedeSocial";
 import { RFValue } from "react-native-responsive-fontsize";
 import InputLogin from "../../components/InputLogin";
 import { useNavigation } from "@react-navigation/native";
+import useAuth from "../../hook/useAuth";
 
 const Login = () => {
    const { navigate } = useNavigation();
+   const { handleLogin, dados, user, setUser } = useAuth();
 
-   const [username, setUsername] = useState("");
-   const [passowrd, setPassword] = useState("");
    const [showPassword, setShowPassword] = useState(true);
 
    const handleShowPassword = () => {
       setShowPassword(!showPassword);
+      console.log(dados);
    };
+
+   useEffect(() => {
+      if (dados.email != "") {
+         navigate("Home");
+      }
+   }, [dados]);
+
    return (
       <KeyboardAvoidingView behavior="position" enabled>
          <View style={styles.container}>
@@ -53,8 +61,8 @@ const Login = () => {
                <InputLogin
                   placeh="Username"
                   iconLeftName="account"
-                  value={username}
-                  onChangeText={(e) => setUsername(e)}
+                  value={user.email}
+                  onChangeText={(e) => setUser({ ...user, email: e })}
                />
                <InputLogin
                   placeh="Passowrd"
@@ -62,6 +70,8 @@ const Login = () => {
                   iconHigtName={true}
                   handleShowPassword={handleShowPassword}
                   showPassword={showPassword}
+                  value={user.password}
+                  onChangeText={(e) => setUser({ ...user, password: e })}
                />
             </View>
             <TouchableOpacity
@@ -78,6 +88,7 @@ const Login = () => {
             </TouchableOpacity>
 
             <Button
+               onPress={() => handleLogin()}
                style={{
                   width: 200,
                   height: 60,
