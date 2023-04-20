@@ -92,4 +92,34 @@ router.get("/buscarDadoss/:id", (req, res) => {
    }
 });
 
+router.post("/login", (req, res) => {
+   try {
+      const usuarioBody = Z.object({
+         email: Z.string().email(),
+         password: Z.string(),
+      }).required();
+      const validData = usuarioBody.parse(req.body);
+      const { email, password } = validData;
+      const query = `SELECT * FROM usuario WHERE email = '${email}' AND password = '${password}'`;
+      client.query(query, (err, result) => {
+         if (err) {
+            return res.status(404).send({
+               message: "erro inesperado",
+            });
+         } else if (result.rows.length === 0) {
+            return res.status(202).send({
+               message: "Usuario nao encontrado, faça o cadastro!",
+            });
+         } else {
+            return res.status(200).send({
+               dados: result.rows,
+               message: "usuario pode logar!",
+            });
+         }
+      });
+   } catch (error) {
+      console.log(error);
+   }
+});
+
 module.exports = router;
