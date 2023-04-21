@@ -19,7 +19,9 @@ router.post("/UsuarioCadastrar", (req, res) => {
       return res.status(200).send({
          message: "rota ok",
       });
-   } catch (error) {}
+   } catch (error) {
+      console.log(error);
+   }
 });
 
 router.get("/UsuarioTeste", (req, res) => {
