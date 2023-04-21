@@ -135,7 +135,10 @@ router.post("/login", (req, res) => {
 
 router.post("/mudarSenha", (req, res) => {
    try {
-   } catch (error) {}
+      // codigo para mudar senha aqui
+   } catch (error) {
+      console.log(error);
+   }
 });
 
 module.exports = router;
