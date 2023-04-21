@@ -17,7 +17,7 @@ client.connect();
 router.post("/UsuarioCadastrar", (req, res) => {
    try {
       return res.status(200).send({
-         message: "rota ok",
+         message: "rota Usuario cadastras ok",
       });
    } catch (error) {
       console.log(error);
@@ -33,7 +33,9 @@ router.get("/UsuarioTeste", (req, res) => {
                message: "erro interno no servidor",
             });
          } else {
-            return res.status(200).send(result.rows);
+            return res
+               .status(200)
+               .send({ dados: result.rows, message: "rota usuario teste ok" });
          }
       });
    } catch (error) {
