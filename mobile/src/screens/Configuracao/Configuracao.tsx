@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-paper";
+
+import { DadosConfig } from "../../utils/ConfigOpcoes";
 
 const Configuracao = () => {
    const { goBack } = useNavigation();
@@ -24,49 +26,36 @@ const Configuracao = () => {
             />
             <Text style={{ fontSize: 20 }}>Felipe Gomes</Text>
          </View>
+
          <View style={styles.viewText}>
-            <View
-               style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-               <Text
-                  style={{
-                     marginBottom: 20,
-                     fontSize: 18,
-                  }}
-               >
-                  Connect acount
-               </Text>
-               <Icon name="arrow-right" size={30} color="#5B259F" />
-            </View>
-
-            <View
-               style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-               <Text style={{ marginBottom: 20, fontSize: 18 }}>
-                  Privacy and security
-               </Text>
-               <Icon name="arrow-right" size={30} color="#5B259F" />
-            </View>
-
-            <View
-               style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-               <Text style={{ marginBottom: 20, fontSize: 18 }}>
-                  Login setting
-               </Text>
-
-               <Icon name="arrow-right" size={30} color="#5B259F" />
-            </View>
-
-            <View
-               style={{ flexDirection: "row", justifyContent: "space-between" }}
-            >
-               <Text style={{ marginBottom: 20, fontSize: 18 }}>
-                  Service senter
-               </Text>
-               <Icon name="arrow-right" size={30} color="#5B259F" />
-            </View>
+            {DadosConfig.map((item, index) => {
+               return (
+                  <View
+                     key={index}
+                     style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                     }}
+                  >
+                     <Text
+                        style={{
+                           marginBottom: 20,
+                           fontSize: 18,
+                        }}
+                     >
+                        {item.titulo}
+                     </Text>
+                     <Icon
+                        onPress={() => alert("em andamento")}
+                        name="arrow-right"
+                        size={30}
+                        color="#5B259F"
+                     />
+                  </View>
+               );
+            })}
          </View>
+
          <View
             style={{
                alignItems: "center",
