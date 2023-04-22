@@ -8,6 +8,7 @@ import Cadastro from "../screens/Cadastro/Cadastro";
 import RecuperarSenha from "../screens/RecuperarSenha/RecuperarSenha";
 import Notificacao from "../screens/Notificacao/Notificacao";
 import Configuracao from "../screens/Configuracao/Configuracao";
+import Cartao from "../screens/Cartao/Cartao";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -21,12 +22,21 @@ function LoginStack() {
       </Stack.Navigator>
    );
 }
+
+function HomeStack() {
+   return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+         <Stack.Screen name="Homestack" component={Home} />
+         <Stack.Screen name="Cartao" component={Cartao} />
+      </Stack.Navigator>
+   );
+}
 export function TabNavigation() {
    return (
       <Tab.Navigator screenOptions={{ headerShown: false }}>
          <Tab.Screen
             name="Home"
-            component={Home}
+            component={HomeStack}
             options={{
                tabBarLabel: "Home",
                tabBarIcon: ({ color, size }) => (
