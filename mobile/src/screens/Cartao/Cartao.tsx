@@ -51,7 +51,7 @@ const Cartao = () => {
             }}
          >
             <View>
-               <Text style={{ fontSize: 15 }}>Nome: Felipe Gomes da Silva</Text>
+               <Text style={{ fontSize: 15 }}>Nome: Felipe G Silva</Text>
                <Text style={{ fontSize: 15 }}>Banck: Nubank</Text>
                <Text style={{ fontSize: 15 }}>Accont: ... ... ..223</Text>
                <Text style={{ fontSize: 15 }}>Status: Ativo</Text>
