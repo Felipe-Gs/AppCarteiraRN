@@ -39,7 +39,7 @@ const Cartao = () => {
                   marginTop: 50,
                }}
             >
-               <Text style={{ fontSize: 23, color: "white" }}>Visa</Text>
+               <Text style={{ fontSize: 25, color: "white" }}>Visa</Text>
             </View>
          </View>
          <View
