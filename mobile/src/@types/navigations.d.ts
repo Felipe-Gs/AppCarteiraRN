@@ -6,6 +6,7 @@ export declare global {
          Cadastro: undefined;
          RecuperarSenha: undefined;
          homeTabs: undefined;
+         Cartao: undefined;
       }
    }
 }
