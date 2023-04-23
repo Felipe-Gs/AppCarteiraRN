@@ -21,6 +21,7 @@ const Notificacao = () => {
          <View style={{ marginTop: 30, width: "100%", padding: 20 }}>
             <Text style={{ alignSelf: "center" }}>Novas</Text>
             <FlatList
+               showsVerticalScrollIndicator={false}
                style={{ height: "90%" }}
                data={NotificacaoText}
                keyExtractor={(item) => item.id}
@@ -49,8 +50,8 @@ const Notificacao = () => {
                               marginLeft: 20,
                               marginTop: 10,
                            }}
-                           name="arrow-up"
-                           size={25}
+                           name="checkbox-blank-circle"
+                           size={15}
                            color="#5B259F"
                         />
                      </View>
