@@ -9,6 +9,7 @@ import RecuperarSenha from "../screens/RecuperarSenha/RecuperarSenha";
 import Notificacao from "../screens/Notificacao/Notificacao";
 import Configuracao from "../screens/Configuracao/Configuracao";
 import Cartao from "../screens/Cartao/Cartao";
+import Account from "../screens/Account/Account";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,17 @@ function HomeStack() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
          <Stack.Screen name="Homestack" component={Home} />
          <Stack.Screen name="Cartao" component={Cartao} />
+      </Stack.Navigator>
+   );
+}
+
+function ConfiguracaoStack() {
+   return (
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+         <Stack.Screen name="ConfiguracaoStack" component={Configuracao} />
+         <Stack.Screen name="Account" component={Account} />
+         <Stack.Screen name="Cartao" component={Cartao} />
+         <Stack.Screen name="Notificacao" component={Notificacao} />
       </Stack.Navigator>
    );
 }
@@ -55,7 +67,7 @@ export function TabNavigation() {
                tabBarLabel: "Login",
                tabBarIcon: ({ color, size }) => (
                   <MaterialCommunityIcons
-                     name="login-variant"
+                     name="login"
                      color={color}
                      size={size}
                   />
@@ -79,7 +91,7 @@ export function TabNavigation() {
          />
          <Tab.Screen
             name="Configuracao"
-            component={Configuracao}
+            component={ConfiguracaoStack}
             options={{
                tabBarLabel: "Configuração",
                tabBarIcon: ({ color, size }) => (
