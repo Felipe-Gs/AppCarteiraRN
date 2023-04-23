@@ -7,6 +7,8 @@ export declare global {
          RecuperarSenha: undefined;
          homeTabs: undefined;
          Cartao: undefined;
+         Notificacao: undefined;
+         Account: undefined;
       }
    }
 }
