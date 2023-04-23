@@ -6,9 +6,10 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-paper";
 
 import { DadosConfig } from "../../utils/ConfigOpcoes";
+import ClickNavagar from "../../components/ClickNavagar";
 
 const Configuracao = () => {
-   const { goBack } = useNavigation();
+   const { goBack, navigate } = useNavigation();
    return (
       <View style={styles.container}>
          <Icon
@@ -19,47 +20,38 @@ const Configuracao = () => {
             color="#5B259F"
          />
          <View style={styles.viewfoto}>
-            <Avatar.Image
-               style={{ marginTop: 50, marginBottom: 10 }}
-               size={110}
-               source={require("../../assets/foto.jpeg")}
-            />
-            <Text style={{ fontSize: 20 }}>Felipe Gomes</Text>
+            <Text style={{ fontSize: 20 }}>settings</Text>
          </View>
 
          <View style={styles.viewText}>
-            {DadosConfig.map((item, index) => {
-               return (
-                  <View
-                     key={index}
-                     style={{
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                     }}
-                  >
-                     <Text
-                        style={{
-                           marginBottom: 20,
-                           fontSize: 18,
-                        }}
-                     >
-                        {item.titulo}
-                     </Text>
-                     <Icon
-                        onPress={() => alert("em andamento")}
-                        name="arrow-right"
-                        size={30}
-                        color="#5B259F"
-                     />
-                  </View>
-               );
-            })}
+            <ClickNavagar
+               titulo="account"
+               nameIcon="account"
+               navegar={() => navigate("Account")}
+            />
+            <ClickNavagar
+               titulo="Notifications"
+               nameIcon="bell-circle"
+               navegar={() => navigate("Notificacao")}
+            />
+            <ClickNavagar
+               titulo="Login settings"
+               nameIcon="key"
+               navegar={() => navigate("Login")}
+            />
+            <ClickNavagar
+               titulo="Service senter"
+               nameIcon="account-group"
+               navegar={() => navigate("Login")}
+            />
          </View>
 
          <View
             style={{
                alignItems: "center",
                marginTop: 20,
+               position: "absolute",
+               bottom: 30,
             }}
          >
             <Icon name="delete-outline" size={40} color="#5B259F" />
