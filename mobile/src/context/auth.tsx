@@ -14,6 +14,7 @@ interface IAuthContext {
       nome: string;
       password: string;
    };
+   logado: boolean;
 }
 
 export const AuthContext = createContext({} as IAuthContext);
@@ -31,6 +32,8 @@ export default function auth({ children }: { children: ReactNode }) {
       password: "",
    });
 
+   const [logado, setLogado] = useState(false);
+
    const handleLogin = async () => {
       if (!user.email || !user.password)
          return alert("Existem campos vazios, complete para prosseguir");
@@ -40,11 +43,14 @@ export default function auth({ children }: { children: ReactNode }) {
             password: user.password,
          });
          setDados(response.data.dados);
+         console.log(response.data.dados);
+         setLogado(true);
          alert(response.data.message);
       } catch (error) {
          console.log(error);
       }
    };
+
    return (
       <AuthContext.Provider
          value={{
@@ -52,6 +58,7 @@ export default function auth({ children }: { children: ReactNode }) {
             user,
             dados,
             setUser,
+            logado,
          }}
       >
          {children}
