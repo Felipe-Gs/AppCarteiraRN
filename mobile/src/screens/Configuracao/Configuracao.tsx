@@ -1,14 +1,14 @@
 import { Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useEffect } from "react";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { Avatar } from "react-native-paper";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { DadosConfig } from "../../utils/ConfigOpcoes";
 import ClickNavagar from "../../components/ClickNavagar";
 
 const Configuracao = () => {
+   useEffect(() => {}, []);
    const { goBack, navigate } = useNavigation();
    return (
       <View style={styles.container}>
@@ -19,6 +19,7 @@ const Configuracao = () => {
             size={30}
             color="#5B259F"
          />
+         <Ionicons name="md-notifications-outline" size={32} color="green" />
          <View style={styles.viewfoto}>
             <Text style={{ fontSize: 20 }}>settings</Text>
          </View>
@@ -37,7 +38,7 @@ const Configuracao = () => {
             <ClickNavagar
                titulo="Login settings"
                nameIcon="key"
-               navegar={() => navigate("Login")}
+               navegar={() => navigate("Cartao")}
             />
             <ClickNavagar
                titulo="Service senter"
