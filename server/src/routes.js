@@ -123,8 +123,8 @@ router.post("/login", (req, res) => {
             });
          } else {
             return res.status(200).send({
-               dados: result.rows,
-               message: "usuario pode logar!",
+               dados: result.rows[0],
+               message: "usuario autenticado",
             });
          }
       });
