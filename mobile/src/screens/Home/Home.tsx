@@ -5,20 +5,26 @@ import {
    Text,
    TouchableOpacity,
    View,
+   Image,
 } from "react-native";
-import React from "react";
-import { Button } from "react-native-paper";
+import React, { useEffect } from "react";
+
 import { useNavigation } from "@react-navigation/native";
 import { Avatar } from "react-native-paper";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+
 import ListaPagamentos from "../../components/ListaPagamentos";
 
 import net from "../../assets/net.png";
 import paypal from "../../assets/paypal.png";
 import Group from "../../assets/Group.png";
+import useAuth from "../../hook/useAuth";
+
 const Home = () => {
-   const name = "net.png";
+   const { dados } = useAuth();
    const { navigate } = useNavigation();
+   const { nome } = dados;
+   const email = dados.email;
+
    return (
       <SafeAreaView style={{ padding: 20, flex: 1 }}>
          <View
@@ -29,7 +35,10 @@ const Home = () => {
                alignItems: "center",
             }}
          >
-            <Text style={{ fontWeight: "bold", fontSize: 23 }}>Wallet</Text>
+            <View>
+               <Text style={{ fontWeight: "bold", fontSize: 23 }}>Wallet</Text>
+               <Text style={{ fontWeight: "bold", fontSize: 23 }}>{nome}</Text>
+            </View>
             <Avatar.Image
                style={{}}
                size={80}
@@ -43,7 +52,7 @@ const Home = () => {
                width: "100%",
                height: 150,
                alignItems: "center",
-               backgroundColor: "#2F1155",
+               backgroundColor: "#6E34B8",
                borderRadius: 40,
                marginTop: 60,
             }}
@@ -83,25 +92,25 @@ const Home = () => {
             <TouchableOpacity
                style={{ justifyContent: "center", alignItems: "center" }}
             >
-               <Icon name="transfer" size={40} color="#5B259F" />
+               <Image source={require("../../assets/convert.png")}></Image>
                <Text>Transfer</Text>
             </TouchableOpacity>
             <TouchableOpacity
                style={{ justifyContent: "center", alignItems: "center" }}
             >
-               <Icon name="cash" size={40} color="#5B259F" />
+               <Image source={require("../../assets/export.png")}></Image>
                <Text>Payment</Text>
             </TouchableOpacity>
             <TouchableOpacity
                style={{ justifyContent: "center", alignItems: "center" }}
             >
-               <Icon name="cash" size={40} color="#5B259F" />
+               <Image source={require("../../assets/money-send.png")}></Image>
                <Text>Pagos</Text>
             </TouchableOpacity>
             <TouchableOpacity
                style={{ justifyContent: "center", alignItems: "center" }}
             >
-               <Icon name="plus" size={40} color="#5B259F" />
+               <Image source={require("../../assets/add-circle.png")}></Image>
                <Text>Top Up</Text>
             </TouchableOpacity>
          </View>
