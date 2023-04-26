@@ -21,14 +21,7 @@ const Login = () => {
 
    const handleShowPassword = () => {
       setShowPassword(!showPassword);
-      console.log(dados);
    };
-
-   useEffect(() => {
-      if (dados.email != "") {
-         navigate("Home");
-      }
-   }, [dados]);
 
    return (
       <KeyboardAvoidingView behavior="position" enabled>
