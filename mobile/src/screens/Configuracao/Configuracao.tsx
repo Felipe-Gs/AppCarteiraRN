@@ -19,7 +19,6 @@ const Configuracao = () => {
             size={30}
             color="#5B259F"
          />
-         <Ionicons name="md-notifications-outline" size={32} color="green" />
          <View style={styles.viewfoto}>
             <Text style={{ fontSize: 20 }}>settings</Text>
          </View>
