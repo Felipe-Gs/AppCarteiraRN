@@ -5,7 +5,11 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 interface IdadosConfig {
    titulo: string;
    nameIcon?: string;
+   localizacao?: string;
+   cep?: string;
+   dinheiro?: string;
    navegar?: () => void;
+   nome?: string;
 }
 
 const ClickNavagar = ({ ...rest }: IdadosConfig) => {

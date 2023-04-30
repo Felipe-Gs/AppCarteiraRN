@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
@@ -32,7 +32,7 @@ const Cartao = () => {
                style={{
                   width: "90%",
                   height: 250,
-                  backgroundColor: "#5B259F",
+                  backgroundColor: "#6E34B8",
                   borderRadius: 50,
                   alignItems: "center",
                   justifyContent: "center",
@@ -50,8 +50,16 @@ const Cartao = () => {
                marginTop: 50,
             }}
          >
-            <View>
-               <Text style={{ fontSize: 15 }}>Nome: Felipe G Silva</Text>
+            <View
+               style={{
+                  justifyContent: "space-around",
+                  width: "100%",
+                  alignItems: "center",
+               }}
+            >
+               <View>
+                  <Text style={{ fontSize: 15 }}>Nome: Felipe G Silva</Text>
+               </View>
                <Text style={{ fontSize: 15 }}>Banck: Nubank</Text>
                <Text style={{ fontSize: 15 }}>Accont: ... ... ..223</Text>
                <Text style={{ fontSize: 15 }}>Status: Ativo</Text>

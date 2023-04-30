@@ -1,5 +1,6 @@
 import React from "react";
 import AuthContext from "./src/context/auth";
+import { Provider as PaperProvider } from "react-native-paper";
 // import Routes from "./Routes";
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -9,7 +10,9 @@ export default function App() {
    return (
       <AuthContext>
          <NavigationContainer>
-            <TabNavigation />
+            <PaperProvider>
+               <TabNavigation />
+            </PaperProvider>
          </NavigationContainer>
       </AuthContext>
    );

@@ -10,6 +10,8 @@ import Notificacao from "../screens/Notificacao/Notificacao";
 import Configuracao from "../screens/Configuracao/Configuracao";
 import Cartao from "../screens/Cartao/Cartao";
 import Account from "../screens/Account/Account";
+import useAuth from "../hook/useAuth";
+import { useEffect, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,69 +42,79 @@ function ConfiguracaoStack() {
          <Stack.Screen name="Account" component={Account} />
          <Stack.Screen name="Cartao" component={Cartao} />
          <Stack.Screen name="Notificacao" component={Notificacao} />
+         <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
    );
 }
 export function TabNavigation() {
+   const { dados, logado } = useAuth();
+   // console.log(logado);
+
    return (
       <Tab.Navigator screenOptions={{ headerShown: false }}>
-         <Tab.Screen
-            name="Home"
-            component={HomeStack}
-            options={{
-               tabBarLabel: "Home",
-               tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons
-                     name="home"
-                     color={color}
-                     size={size}
-                  />
-               ),
-            }}
-         />
-         <Tab.Screen
-            name="Login"
-            component={LoginStack}
-            options={{
-               tabBarLabel: "Login",
-               tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons
-                     name="login"
-                     color={color}
-                     size={size}
-                  />
-               ),
-            }}
-         />
-
-         <Tab.Screen
-            name="Notificacao"
-            component={Notificacao}
-            options={{
-               tabBarLabel: "Notificação",
-               tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons
-                     name="bell-outline"
-                     color={color}
-                     size={size}
-                  />
-               ),
-            }}
-         />
-         <Tab.Screen
-            name="Configuracao"
-            component={ConfiguracaoStack}
-            options={{
-               tabBarLabel: "Configuração",
-               tabBarIcon: ({ color, size }) => (
-                  <MaterialCommunityIcons
-                     name="cog-outline"
-                     color={color}
-                     size={size}
-                  />
-               ),
-            }}
-         />
+         {logado ? (
+            <>
+               <Tab.Screen
+                  name="Home"
+                  component={HomeStack}
+                  options={{
+                     tabBarLabel: "Home",
+                     tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                           name="home"
+                           color={color}
+                           size={size}
+                        />
+                     ),
+                  }}
+               />
+               <Tab.Screen
+                  name="Notificacao"
+                  component={Notificacao}
+                  options={{
+                     tabBarLabel: "Notificação",
+                     tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                           name="bell-outline"
+                           color={color}
+                           size={size}
+                        />
+                     ),
+                  }}
+               />
+               <Tab.Screen
+                  name="Configuracao"
+                  component={ConfiguracaoStack}
+                  options={{
+                     tabBarLabel: "Configuração",
+                     tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                           name="cog-outline"
+                           color={color}
+                           size={size}
+                        />
+                     ),
+                  }}
+               />
+            </>
+         ) : (
+            <>
+               <Tab.Screen
+                  name="Login"
+                  component={LoginStack}
+                  options={{
+                     tabBarLabel: "Login",
+                     tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons
+                           name="login"
+                           color={color}
+                           size={size}
+                        />
+                     ),
+                  }}
+               />
+            </>
+         )}
       </Tab.Navigator>
    );
 }

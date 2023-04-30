@@ -1,13 +1,24 @@
-import { Text, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-paper";
+import { Dialog, Portal, Text } from "react-native-paper";
 
 import ClickNavagar from "../../components/ClickNavagar";
+import useAuth from "../../hook/useAuth";
+import ModalConfirmar from "../../components/ModalConfirmar";
+// https://reactnative.dev/docs/typescript
 
 const Account = () => {
+   const { dados } = useAuth();
+   console.log(dados);
+   const [showModal, setShowModal] = React.useState(false);
+   const handleShowModal = () => {
+      setShowModal(true);
+   };
+
    const { goBack, navigate } = useNavigation();
    return (
       <View style={styles.container}>
@@ -24,17 +35,14 @@ const Account = () => {
                size={110}
                source={require("../../assets/foto.jpeg")}
             />
-            <Text style={{ fontSize: 20 }}>Felipe Gomes</Text>
+            <Text style={{ fontSize: 20 }}>{dados.nome}</Text>
          </View>
 
          <View style={styles.viewText}>
-            <ClickNavagar
-               titulo="contatofelipegomes.dev@gmail.com"
-               nameIcon="email"
-            />
-            <ClickNavagar titulo="1300" nameIcon="cash" />
-            <ClickNavagar titulo="Alto da Irmandade" nameIcon="city" />
-            <ClickNavagar titulo="62910000" nameIcon="map-marker-radius" />
+            <ClickNavagar titulo={dados.email} nameIcon="email" />
+            <ClickNavagar titulo={dados.dinheiro} nameIcon="cash" />
+            <ClickNavagar titulo={dados.localizacao} nameIcon="city" />
+            <ClickNavagar titulo={dados.cep} nameIcon="map-marker-radius" />
          </View>
 
          <View
@@ -43,9 +51,17 @@ const Account = () => {
                marginTop: 20,
             }}
          >
-            <Icon name="exit-to-app" size={40} color="#5B259F" />
-            <Text style={{ marginTop: 20, fontSize: 15 }}>Sair da conta</Text>
+            <TouchableOpacity
+               style={{ alignItems: "center" }}
+               onPress={() => handleShowModal()}
+            >
+               <Icon name="exit-to-app" size={40} color="#5B259F" />
+               <Text style={{ marginTop: 20, fontSize: 15 }}>
+                  Sair da conta
+               </Text>
+            </TouchableOpacity>
          </View>
+         <ModalConfirmar visible={showModal} setVisible={setShowModal} />
       </View>
    );
 };

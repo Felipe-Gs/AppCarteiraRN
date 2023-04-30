@@ -9,11 +9,17 @@ interface IAuthContext {
    };
    setUser: (user: { email: string; password: string }) => void;
    dados: {
+      localizacao: string;
+      cep: string;
+      dinheiro: string;
+
       email: string;
       id: string;
       nome: string;
       password: string;
    };
+   logado: boolean;
+   setLogado: (logado: boolean) => void;
 }
 
 export const AuthContext = createContext({} as IAuthContext);
@@ -29,7 +35,12 @@ export default function auth({ children }: { children: ReactNode }) {
       id: "",
       nome: "",
       password: "",
+      dinheiro: "",
+      cep: "",
+      localizacao: "",
    });
+
+   const [logado, setLogado] = useState(false);
 
    const handleLogin = async () => {
       if (!user.email || !user.password)
@@ -40,11 +51,14 @@ export default function auth({ children }: { children: ReactNode }) {
             password: user.password,
          });
          setDados(response.data.dados);
+         console.log(response.data.dados);
+         setLogado(true);
          alert(response.data.message);
       } catch (error) {
          console.log(error);
       }
    };
+
    return (
       <AuthContext.Provider
          value={{
@@ -52,6 +66,8 @@ export default function auth({ children }: { children: ReactNode }) {
             user,
             dados,
             setUser,
+            logado,
+            setLogado,
          }}
       >
          {children}
