@@ -43,4 +43,20 @@ router.get("/UsuarioTeste", (req, res) => {
    }
 });
 
+router.get("/buscarNotificacao/:id", (req, res) => {
+   const id = req.params.id;
+   try {
+      const query = `SELECT * FROM notificacoes WHERE usuario_id = '${id}'`;
+      client.query(query, (err, result) => {
+         if (err) {
+            return res.status(404).send({
+               message: "erro no servidor",
+            });
+         } else {
+            return res.status(200).send(result.rows);
+         }
+      });
+   } catch (error) {}
+});
+
 module.exports = router;
