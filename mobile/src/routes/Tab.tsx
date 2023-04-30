@@ -42,6 +42,7 @@ function ConfiguracaoStack() {
          <Stack.Screen name="Account" component={Account} />
          <Stack.Screen name="Cartao" component={Cartao} />
          <Stack.Screen name="Notificacao" component={Notificacao} />
+         <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
    );
 }
