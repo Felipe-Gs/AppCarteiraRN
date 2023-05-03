@@ -7,6 +7,8 @@ import { useNavigation } from "@react-navigation/native";
 import api from "../../services/api";
 import useAuth from "../../hook/useAuth";
 
+import formatarData from "../../utils/formatarData";
+
 const Notificacao = () => {
    const { goBack } = useNavigation();
    const { dados } = useAuth();
@@ -60,9 +62,7 @@ const Notificacao = () => {
                         >
                            <View>
                               <Text>{item.mensagem}</Text>
-                              <Text>{item.data}</Text>
-                              {/* <Text>{item}</Text>
-                           <Text>{item}</Text> */}
+                              <Text>{formatarData(item.data)}</Text>
                            </View>
                            <Icon
                               style={{
@@ -79,7 +79,7 @@ const Notificacao = () => {
                   }}
                />
             ) : (
-               <ActivityIndicator size={30} />
+               <ActivityIndicator size={30} color={"#5B259F"} />
             )}
          </View>
       </View>
