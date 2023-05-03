@@ -1,4 +1,4 @@
-import { Text, View, Image } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
@@ -27,7 +27,7 @@ const Cartao = () => {
                justifyContent: "center",
             }}
          >
-            <Text>Detalhes do cartão</Text>
+            <Text style={{ fontSize: 22 }}>Detalhes do cartão</Text>
             <View
                style={{
                   width: "90%",
@@ -54,16 +54,69 @@ const Cartao = () => {
                style={{
                   justifyContent: "space-around",
                   width: "100%",
-                  alignItems: "center",
+                  alignItems: "flex-start",
                }}
             >
-               <View>
-                  <Text style={{ fontSize: 15 }}>Nome: Felipe G Silva</Text>
+               <View
+                  style={{
+                     width: "100%",
+                     justifyContent: "space-around",
+                     alignItems: "center",
+                     flexDirection: "row",
+                     height: 50,
+                  }}
+               >
+                  <Text style={{ fontSize: 22 }}>Nome:</Text>
+                  <Text style={{ fontSize: 22 }}>Felipe G Silva</Text>
                </View>
-               <Text style={{ fontSize: 15 }}>Banck: Nubank</Text>
-               <Text style={{ fontSize: 15 }}>Accont: ... ... ..223</Text>
-               <Text style={{ fontSize: 15 }}>Status: Ativo</Text>
-               <Text style={{ fontSize: 15 }}>Valid: 2020-2023</Text>
+               <View
+                  style={{
+                     width: "100%",
+                     justifyContent: "space-around",
+                     alignItems: "center",
+                     flexDirection: "row",
+                     height: 50,
+                  }}
+               >
+                  <Text style={{ fontSize: 22 }}>Banck:</Text>
+                  <Text style={{ fontSize: 22 }}>Nubank</Text>
+               </View>
+               <View
+                  style={{
+                     width: "100%",
+                     justifyContent: "space-around",
+                     alignItems: "center",
+                     flexDirection: "row",
+                     height: 50,
+                  }}
+               >
+                  <Text style={{ fontSize: 22 }}>Accont:</Text>
+                  <Text style={{ fontSize: 22 }}>... ... ..223</Text>
+               </View>
+               <View
+                  style={{
+                     width: "100%",
+                     justifyContent: "space-around",
+                     alignItems: "center",
+                     flexDirection: "row",
+                     height: 50,
+                  }}
+               >
+                  <Text style={{ fontSize: 22 }}>Status:</Text>
+                  <Text style={{ fontSize: 22 }}>Ativo</Text>
+               </View>
+               <View
+                  style={{
+                     width: "100%",
+                     justifyContent: "space-around",
+                     alignItems: "center",
+                     flexDirection: "row",
+                     height: 50,
+                  }}
+               >
+                  <Text style={{ fontSize: 22 }}>Valid:</Text>
+                  <Text style={{ fontSize: 22 }}>2020-2023</Text>
+               </View>
             </View>
          </View>
          <Button style={{ marginTop: 40 }}>Delete Card</Button>
