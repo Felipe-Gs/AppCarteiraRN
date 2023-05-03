@@ -4,7 +4,7 @@ import React from "react";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { Avatar } from "react-native-paper";
-import { Dialog, Portal, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
 
 import ClickNavagar from "../../components/ClickNavagar";
 import useAuth from "../../hook/useAuth";

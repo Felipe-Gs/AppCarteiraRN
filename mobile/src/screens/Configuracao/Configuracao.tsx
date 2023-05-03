@@ -3,7 +3,6 @@ import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { styles } from "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Ionicons from "@expo/vector-icons/Ionicons";
 
 import ClickNavagar from "../../components/ClickNavagar";
 
@@ -42,7 +41,7 @@ const Configuracao = () => {
             <ClickNavagar
                titulo="Service senter"
                nameIcon="account-group"
-               navegar={() => navigate("Login")}
+               navegar={() => alert("ainda em desenvolvimento")}
             />
          </View>
 

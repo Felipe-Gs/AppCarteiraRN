@@ -11,7 +11,6 @@ import Configuracao from "../screens/Configuracao/Configuracao";
 import Cartao from "../screens/Cartao/Cartao";
 import Account from "../screens/Account/Account";
 import useAuth from "../hook/useAuth";
-import { useEffect, useState } from "react";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -48,7 +47,6 @@ function ConfiguracaoStack() {
 }
 export function TabNavigation() {
    const { dados, logado } = useAuth();
-   // console.log(logado);
 
    return (
       <Tab.Navigator screenOptions={{ headerShown: false }}>
