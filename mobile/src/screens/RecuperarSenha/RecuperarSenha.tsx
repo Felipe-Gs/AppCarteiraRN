@@ -5,6 +5,8 @@ import InputLogin from "../../components/InputLogin";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
+import Animated, { FadeIn, BounceIn } from "react-native-reanimated";
+
 const RecuperarSenha = () => {
    const { goBack } = useNavigation();
    return (
@@ -13,7 +15,10 @@ const RecuperarSenha = () => {
             Seja bem vindo
          </Text>
          <Text style={{ fontSize: 40 }}>Recuperar Senha</Text>
-         <View style={styles.viewInputs}>
+         <Animated.View
+            entering={BounceIn.duration(700)}
+            style={styles.viewInputs}
+         >
             <InputLogin iconLeftName="email" placeh="Digite seu email" />
             <Button
                mode="contained"
@@ -39,7 +44,7 @@ const RecuperarSenha = () => {
                   <Text style={{ fontWeight: "bold" }}>Volte ao Login</Text>
                </TouchableOpacity>
             </View>
-         </View>
+         </Animated.View>
       </View>
    );
 };

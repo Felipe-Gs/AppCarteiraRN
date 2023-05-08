@@ -18,6 +18,7 @@ import net from "../../assets/net.png";
 import paypal from "../../assets/paypal.png";
 import Group from "../../assets/Group.png";
 import useAuth from "../../hook/useAuth";
+import Animated, { FadeIn } from "react-native-reanimated";
 
 const Home = () => {
    const { dados } = useAuth();
@@ -27,7 +28,8 @@ const Home = () => {
 
    return (
       <SafeAreaView style={{ padding: 20, flex: 1 }}>
-         <View
+         <Animated.View
+            entering={FadeIn.duration(700)}
             style={{
                flexDirection: "row",
                marginTop: 50,
@@ -44,7 +46,7 @@ const Home = () => {
                size={80}
                source={require("../../assets/foto.jpeg")}
             />
-         </View>
+         </Animated.View>
          <View
             style={{
                flexDirection: "row",
