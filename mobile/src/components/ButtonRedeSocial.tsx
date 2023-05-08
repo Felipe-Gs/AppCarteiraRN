@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "react-native-paper";
 import { styles } from "./StyleButtonRedeSocial";
 
+import Animated from "react-native-reanimated";
+
 interface Ibutton {
    nameIcon?: string;
    nomeDesc: string;

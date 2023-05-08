@@ -13,6 +13,7 @@ import InputLogin from "../../components/InputLogin";
 import { useNavigation } from "@react-navigation/native";
 import useAuth from "../../hook/useAuth";
 
+import Animated, { FadeIn, BounceIn, FadeOut } from "react-native-reanimated";
 const Login = () => {
    const { navigate } = useNavigation();
    const { handleLogin, dados, user, setUser } = useAuth();
@@ -25,17 +26,21 @@ const Login = () => {
 
    return (
       <KeyboardAvoidingView behavior="position" enabled>
-         <View style={styles.container}>
-            <View style={styles.header}>
+         <Animated.View
+            entering={FadeIn.duration(700)}
+            exiting={FadeOut.duration(700)}
+            style={styles.container}
+         >
+            <Animated.View entering={FadeIn} style={styles.header}>
                <Text style={{ fontSize: RFValue(30), fontWeight: "bold" }}>
                   Seja bem vindo(a)
                </Text>
                <Text style={{ fontSize: RFValue(20), fontWeight: "bold" }}>
                   Wallet App
                </Text>
-            </View>
+            </Animated.View>
             <Text>Sing In</Text>
-            <View style={styles.viewButton}>
+            <Animated.View entering={BounceIn} style={styles.viewButton}>
                <ButtonRedeSocial
                   nameIcon="google"
                   nomeDesc="Google"
@@ -49,7 +54,7 @@ const Login = () => {
                   bgColor="#0072EA"
                   clicar={() => ""}
                />
-            </View>
+            </Animated.View>
             <View style={styles.viewInputs}>
                <InputLogin
                   placeh="Username"
@@ -105,7 +110,7 @@ const Login = () => {
                   </Text>
                </TouchableOpacity>
             </View>
-         </View>
+         </Animated.View>
       </KeyboardAvoidingView>
    );
 };
