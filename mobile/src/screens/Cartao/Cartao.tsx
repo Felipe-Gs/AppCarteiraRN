@@ -79,7 +79,7 @@ const Cartao = () => {
                   }}
                >
                   <Text style={{ fontSize: 22 }}>Banck:</Text>
-                  <Text style={{ fontSize: 22 }}>Nubank</Text>
+                  <Text style={{ fontSize: 22 }}>MyBank</Text>
                </View>
                <View
                   style={{
@@ -91,7 +91,7 @@ const Cartao = () => {
                   }}
                >
                   <Text style={{ fontSize: 22 }}>Accont:</Text>
-                  <Text style={{ fontSize: 22 }}>... ... ..223</Text>
+                  <Text style={{ fontSize: 22 }}>... ... ..123</Text>
                </View>
                <View
                   style={{

@@ -74,3 +74,4 @@ export default function auth({ children }: { children: ReactNode }) {
       </AuthContext.Provider>
    );
 }
+// https://www.youtube.com/watch?v=ppDsxbUNtNQ&list=RDCMUC8TRfZVb-M_ivbU9yiocTvQ&index=2

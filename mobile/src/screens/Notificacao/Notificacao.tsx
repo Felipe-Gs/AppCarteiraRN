@@ -1,6 +1,7 @@
 import {
    ActivityIndicator,
    FlatList,
+   ScrollView,
    Text,
    TouchableOpacity,
    View,
@@ -9,12 +10,15 @@ import React, { useEffect, useState } from "react";
 import "./styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native";
-import { Feather } from "@expo/vector-icons";
+
 import api from "../../services/api";
 import useAuth from "../../hook/useAuth";
 
-import formatarData from "../../utils/formatarData";
+import { VictoryPie, VictoryTooltip } from "victory-native";
+import { Picker } from "@react-native-picker/picker";
 
+import { MONTHS, MonthsProps } from "../../utils/months";
+import { CardProps, EXPENSES } from "../../utils/Expenses";
 import Animated, {
    BounceIn,
    FadeIn,
@@ -23,17 +27,26 @@ import Animated, {
    ZoomOut,
 } from "react-native-reanimated";
 
-import { Checkbox } from "react-native-paper";
-
 const Notificacao = () => {
+   const [data, setData] = useState<CardProps[]>([]);
+   const [months, setMonths] = useState<MonthsProps>("Janeiro");
    const { goBack } = useNavigation();
    const { dados } = useAuth();
 
+   useEffect(() => {
+      setData(EXPENSES[months]);
+   }, [months]);
+
+   const [selecionado, setSelecionado] = useState("");
    const [checked, setChecked] = useState<number[]>([]);
+
+   const handleOnpress = (id: string) => {
+      setSelecionado((prev) => (prev === id ? "" : id));
+   };
 
    const handleChecked = (id: number) => {
       if (checked.includes(id)) {
-         setChecked((prevState) => prevState.filter((habit) => habit !== id));
+         setChecked((prevState) => prevState.filter((item) => item !== id));
       } else {
          setChecked((prevState) => [...prevState, id]);
       }
@@ -54,6 +67,7 @@ const Notificacao = () => {
    useEffect(() => {
       handleNotification();
    }, []);
+
    return (
       <Animated.View
          entering={FadeIn.duration(1000)}
@@ -66,14 +80,133 @@ const Notificacao = () => {
             size={30}
             color="#5B259F"
          />
-         <Text style={{ fontSize: 25 }}>Notificação</Text>
+         <Text style={{ fontSize: 25 }}>Dispesas</Text>
+         <View
+            style={{
+               width: "100%",
+               height: 50,
+               marginTop: 20,
+               justifyContent: "center",
+            }}
+         >
+            <Picker
+               selectedValue={months}
+               onValueChange={(itemValue: MonthsProps) => setMonths(itemValue)}
+               style={{
+                  backgroundColor: "#FFF",
+                  height: 50,
+                  flex: 1,
+                  marginLeft: 50,
+               }}
+            >
+               {MONTHS.map((month) => (
+                  <Picker.Item
+                     key={month.label}
+                     label={month.label}
+                     value={month.label}
+                  />
+               ))}
+            </Picker>
+         </View>
+         <View
+            style={{
+               width: "100%",
+               alignItems: "center",
+               justifyContent: "center",
+            }}
+         >
+            <VictoryPie
+               data={data}
+               x="label"
+               y="value"
+               colorScale={data.map((expenses) => expenses.color)}
+               innerRadius={80}
+               // padAngle={10}
+               animate={{
+                  duration: 500,
+                  easing: "bounce",
+               }}
+               style={{
+                  data: {
+                     fillOpacity: ({ datum }) =>
+                        datum.id === selecionado || selecionado === ""
+                           ? 1
+                           : 0.2,
+                  },
+                  labels: {
+                     fill: "white",
+                  },
+               }}
+               labelComponent={
+                  <VictoryTooltip
+                     renderInPortal={false}
+                     flyoutStyle={{
+                        stroke: 0,
+                        fill: ({ datum }) => datum.color,
+                     }}
+                  />
+               }
+            />
+         </View>
 
          <View style={{ marginTop: 30, width: "100%", padding: 20 }}>
             <Text style={{ alignSelf: "center" }}>Novas</Text>
-            {notificacoes ? (
+            <FlatList
+               data={data}
+               style={{ height: 130 }}
+               keyExtractor={(item) => item.id}
+               renderItem={({ item, index }) => {
+                  return (
+                     <TouchableOpacity
+                        key={index}
+                        onPress={() => handleOnpress(item.id)}
+                        style={{
+                           flexDirection: "row",
+                           alignItems: "center",
+                        }}
+                     >
+                        <View
+                           style={{
+                              backgroundColor: "white",
+                              marginTop: 10,
+                              height: 60,
+                              width: "95%",
+                           }}
+                        >
+                           <View
+                              style={{
+                                 flexDirection: "row",
+                                 padding: 10,
+                                 justifyContent: "space-between",
+                              }}
+                           >
+                              <Text style={{ fontWeight: "bold" }}>
+                                 {item.label}
+                              </Text>
+                              <Text style={{ fontWeight: "bold" }}>
+                                 R$ {item.value}
+                              </Text>
+                           </View>
+                        </View>
+                        <View
+                           style={{
+                              width: 15,
+
+                              height: 60,
+                              marginTop: 10,
+                              backgroundColor: `${item.color}`,
+                           }}
+                        ></View>
+                     </TouchableOpacity>
+                  );
+               }}
+               showsVerticalScrollIndicator={false}
+            />
+
+            {/* {notificacoes ? (
                <FlatList
                   showsVerticalScrollIndicator={false}
-                  style={{ height: "90%" }}
+                  style={{ height: 50 }}
                   data={notificacoes}
                   keyExtractor={(item) => item.id}
                   renderItem={({ item }) => {
@@ -140,7 +273,7 @@ const Notificacao = () => {
                />
             ) : (
                <ActivityIndicator size={30} color={"#5B259F"} />
-            )}
+            )} */}
          </View>
       </Animated.View>
    );
